@@ -1,0 +1,47 @@
+{
+  "name": "dgs-pay-api-chatbot",
+  "version": "1.0.0",
+  "description": "A lightweight, embeddable chatbot for DGS-Pay payment API documentation. Zero cost, no API keys required.",
+  "main": "chatbot-script.js",
+  "scripts": {
+    "test": "echo \"Open demo.html in your browser to test\" && exit 0",
+    "demo": "echo \"Open demo.html in your browser to see the chatbot in action\"",
+    "minify": "echo \"Use cssnano and terser to minify files for production\""
+  },
+  "keywords": [
+    "chatbot",
+    "api",
+    "documentation",
+    "payment",
+    "dgs-pay",
+    "mobile-money",
+    "embeddable",
+    "widget",
+    "javascript",
+    "zero-cost"
+  ],
+  "author": "DGS-Pay",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/dgs-pay-chatbot"
+  },
+  "files": [
+    "chatbot-widget.html",
+    "chatbot-styles.css",
+    "chatbot-script.js",
+    "demo.html",
+    "README.md",
+    "QUICKSTART.md",
+    "CUSTOMIZATION_GUIDE.md",
+    "INTEGRATION_EXAMPLES.md",
+    "EXAMPLE_RESPONSES.md",
+    "PROJECT_SUMMARY.md",
+    "DEPLOYMENT_CHECKLIST.md"
+  ],
+  "bugs": {
+    "url": "https://github.com/yourusername/dgs-pay-chatbot/issues"
+  },
+  "homepage": "https://github.com/yourusername/dgs-pay-chatbot#readme",
+  "devDependencies": {}
+}

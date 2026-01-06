@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGS-Pay Chatbot Test Suite</title>
+    <link rel="stylesheet" href="chatbot-styles.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .test-section h2 {
+            margin-top: 0;
+            color: #1a73e8;
+        }
+
+        .test-case {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .test-case.failed {
+            border-left-color: #f44336;
+        }
+
+        .test-question {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .test-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .test-status.pass {
+            background: #4caf50;
+            color: white;
+        }
+
+        .test-status.fail {
+            background: #f44336;
+            color: white;
+        }
+
+        .run-all-btn {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .run-all-btn:hover {
+            background: #1557b0;
+        }
+
+        .summary {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .summary h3 {
+            margin-top: 0;
+            color: #1a73e8;
+        }
+
+        .test-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 DGS-Pay Chatbot Test Suite</h1>
+        <p class="subtitle">Automated testing for knowledge base responses</p>
+
+        <button class="run-all-btn" onclick="runAllTests()">🚀 Run All Tests</button>
+
+        <div class="test-section">
+            <h2>📊 Test Summary</h2>
+            <div class="summary" id="summary">
+                <p>Click "Run All Tests" to begin testing...</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔐 Authentication Tests</h2>
+            <div id="auth-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>💳 Payment Tests</h2>
+            <div id="payment-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>⚠️ Error Handling Tests</h2>
+            <div id="error-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔗 Webhook Tests</h2>
+            <div id="webhook-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Validation Tests</h2>
+            <div id="validation-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>⚡ General Tests</h2>
+            <div id="general-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Out-of-Scope Tests</h2>
+            <div id="out-of-scope-tests"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎨 UI Tests</h2>
+            <div id="ui-tests"></div>
+        </div>
+
+        <p style="text-align: center; color: #999; margin-top: 40px;">
+            DGS-Pay Chatbot Test Suite v1.0.0
+        </p>
+    </div>
+
+    <script src="chatbot-script.js"></script>
+    <script>
+        // Test cases organized by category
+        const testCases = {
+            auth: [
+                { q: "How do I authenticate to the API?", shouldMatch: true, keywords: ['authentication', 'token', 'bearer'] },
+                { q: "Where do I find my client secret?", shouldMatch: true, keywords: ['client secret', 'secret key'] },
+                { q: "How long do tokens last?", shouldMatch: true, keywords: ['expires', '600', '10 minutes'] },
+                { q: "What is the token refresh logic?", shouldMatch: true, keywords: ['refresh', 'token'] },
+            ],
+            payment: [
+                { q: "How do I initiate a mobile money payment?", shouldMatch: true, keywords: ['mobile money', '/api/init_payment'] },
+                { q: "What are the available API codes?", shouldMatch: true, keywords: ['PAYIN_MOBILE', 'PAYIN_CARD_LOCAL'] },
+                { q: "Show me a complete payment example", shouldMatch: true, keywords: ['pay_info', 'from'] },
+                { q: "How do I make a card payment?", shouldMatch: true, keywords: ['PAYIN_CARD'] },
+            ],
+            error: [
+                { q: "What does error 10400 mean?", shouldMatch: true, keywords: ['10400', 'validation'] },
+                { q: "What are the error codes?", shouldMatch: true, keywords: ['error', 'failed', 'validation'] },
+                { q: "Payment failed with invalid reference", shouldMatch: true, keywords: ['reference', 'alphanumeric'] },
+            ],
+            webhook: [
+                { q: "How do I handle webhooks?", shouldMatch: true, keywords: ['webhook', 'callback'] },
+                { q: "How do I verify webhook secrets?", shouldMatch: true, keywords: ['WEBHOOK_SECRET', 'verification'] },
+                { q: "What's the webhook payload?", shouldMatch: true, keywords: ['transaction.completed', 'event'] },
+            ],
+            validation: [
+                { q: "What are the reference field requirements?", shouldMatch: true, keywords: ['6-50', 'alphanumeric'] },
+                { q: "How do I format customer names?", shouldMatch: true, keywords: ['2-50', 'characters'] },
+                { q: "Can I use special characters in reference?", shouldMatch: true, keywords: ['no', 'letters', 'numbers'] },
+            ],
+            general: [
+                { q: "What are the rate limits?", shouldMatch: true, keywords: ['rate limit', 'best practice'] },
+                { q: "Which currencies are supported?", shouldMatch: true, keywords: ['RWF', 'UGX', 'KES'] },
+                { q: "What countries are supported?", shouldMatch: true, keywords: ['Rwanda', 'Uganda', 'Kenya'] },
+                { q: "How do I test payments?", shouldMatch: true, keywords: ['sandbox', 'simulation'] },
+            ],
+            outOfScope: [
+                { q: "What's the weather today?", shouldMatch: false, keywords: ['payment', 'API'] },
+                { q: "Who won the World Cup?", shouldMatch: false, keywords: ['payment', 'API'] },
+                { q: "How do I cook pasta?", shouldMatch: false, keywords: ['payment', 'API'] },
+                { q: "Tell me a joke", shouldMatch: false, keywords: ['payment', 'API'] },
+            ],
+            ui: [
+                { name: "Chatbot container exists", check: () => document.querySelector('.dgs-chatbot-container') !== null },
+                { name: "Toggle button exists", check: () => document.querySelector('.dgs-chatbot-toggle') !== null },
+                { name: "Quick action buttons exist", check: () => document.querySelectorAll('.dgs-quick-btn').length === 4 },
+                { name: "Chatbot class initialized", check: () => window.dgsChatbot !== undefined },
+            ]
+        };
+
+        let testResults = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            details: []
+        };
+
+        function runTests(category, containerId, tests) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            tests.forEach((test, index) => {
+                const testCase = document.createElement('div');
+                testCase.className = 'test-case';
+
+                let result;
+                if (test.q) {
+                    // Text-based test
+                    const response = window.dgsChatbot.getResponse(test.q);
+                    const lowerResponse = response.toLowerCase();
+                    
+                    const allKeywordsFound = test.keywords.every(keyword => 
+                        lowerResponse.includes(keyword.toLowerCase())
+                    );
+
+                    result = {
+                        passed: test.shouldMatch ? allKeywordsFound : !allKeywordsFound,
+                        response: response.substring(0, 100) + '...'
+                    };
+                    
+                    testCase.innerHTML = `
+                        <div class="test-question">❓ ${test.q}</div>
+                        <div class="test-info">Response preview: ${result.response}</div>
+                    `;
+                } else {
+                    // UI test
+                    result = {
+                        passed: test.check(),
+                        response: 'N/A'
+                    };
+                    
+                    testCase.innerHTML = `
+                        <div class="test-question">🔍 ${test.name}</div>
+                    `;
+                }
+
+                const status = document.createElement('span');
+                status.className = `test-status ${result.passed ? 'pass' : 'fail'}`;
+                status.textContent = result.passed ? '✓ PASS' : '✗ FAIL';
+                
+                testCase.appendChild(status);
+
+                if (!result.passed) {
+                    testCase.classList.add('failed');
+                }
+
+                container.appendChild(testCase);
+
+                // Update summary
+                testResults.total++;
+                if (result.passed) {
+                    testResults.passed++;
+                } else {
+                    testResults.failed++;
+                }
+            });
+        }
+
+        function updateSummary() {
+            const summaryDiv = document.getElementById('summary');
+            const percentage = ((testResults.passed / testResults.total) * 100).toFixed(1);
+            
+            let statusColor = percentage >= 90 ? '#4caf50' : percentage >= 70 ? '#ff9800' : '#f44336';
+            
+            summaryDiv.innerHTML = `
+                <h3>📊 Test Results</h3>
+                <p><strong>Total Tests:</strong> ${testResults.total}</p>
+                <p><strong>Passed:</strong> <span style="color: #4caf50; font-weight: bold;">${testResults.passed}</span></p>
+                <p><strong>Failed:</strong> <span style="color: ${testResults.failed > 0 ? '#f44336' : '#4caf50'}; font-weight: bold;">${testResults.failed}</span></p>
+                <p><strong>Success Rate:</strong> <span style="color: ${statusColor}; font-weight: bold; font-size: 24px;">${percentage}%</span></p>
+                ${testResults.failed === 0 ? '<p style="color: #4caf50; font-weight: bold; margin-top: 15px;">🎉 All tests passed!</p>' : '<p style="color: #f44336; margin-top: 15px;">⚠️ Some tests failed. Review failed cases above.</p>'}
+            `;
+        }
+
+        function runAllTests() {
+            // Reset results
+            testResults = { total: 0, passed: 0, failed: 0, details: [] };
+            
+            // Wait for chatbot to initialize
+            setTimeout(() => {
+                runTests('auth', 'auth-tests', testCases.auth);
+                runTests('payment', 'payment-tests', testCases.payment);
+                runTests('error', 'error-tests', testCases.error);
+                runTests('webhook', 'webhook-tests', testCases.webhook);
+                runTests('validation', 'validation-tests', testCases.validation);
+                runTests('general', 'general-tests', testCases.general);
+                runTests('outOfScope', 'out-of-scope-tests', testCases.outOfScope);
+                runTests('ui', 'ui-tests', testCases.ui);
+                
+                updateSummary();
+                
+                // Scroll to summary
+                document.getElementById('summary').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        // Auto-run tests on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(runAllTests, 1000);
+        });
+    </script>
+</body>
+</html>

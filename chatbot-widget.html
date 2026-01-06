@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGS-Pay API Assistant</title>
+    <link rel="stylesheet" href="chatbot-styles.css">
+</head>
+<body>
+    <div class="dgs-chatbot-container">
+        <!-- Chat Header -->
+        <div class="dgs-chatbot-header">
+            <div class="dgs-chatbot-title">
+                <div class="dgs-chatbot-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3>DGS-Pay API Assistant</h3>
+                    <span class="dgs-status-indicator dgs-status-online"></span>
+                </div>
+            </div>
+            <button class="dgs-minimize-btn" id="dgs-minimize-btn" aria-label="Minimize">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Quick Action Buttons -->
+        <div class="dgs-quick-actions" id="dgs-quick-actions">
+            <button class="dgs-quick-btn" data-query="How do I authenticate to the API?">
+                🔑 Authentication
+            </button>
+            <button class="dgs-quick-btn" data-query="How do I initiate a mobile money payment?">
+                💳 Mobile Money
+            </button>
+            <button class="dgs-quick-btn" data-query="What error codes does the API return?">
+                ⚠️ Error Codes
+            </button>
+            <button class="dgs-quick-btn" data-query="What are the rate limits?">
+                ⚡ Rate Limits
+            </button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="dgs-chat-messages" id="dgs-chat-messages">
+            <div class="dgs-message dgs-bot-message">
+                <div class="dgs-message-content">
+                    <p>Hello! 👋 I'm the DGS-Pay API Assistant. I can help you with:</p>
+                    <ul>
+                        <li>API authentication and tokens</li>
+                        <li>Mobile Money integration (MTN, Airtel)</li>
+                        <li>Card payments (local & international)</li>
+                        <li>Bank and mobile money payouts</li>
+                        <li>Error codes and troubleshooting</li>
+                        <li>Webhook handling</li>
+                    </ul>
+                    <p>Ask me anything about the DGS-Pay API!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="dgs-chat-input-area">
+            <input 
+                type="text" 
+                class="dgs-chat-input" 
+                id="dgs-chat-input" 
+                placeholder="Ask about DGS-Pay API..."
+                autocomplete="off"
+            >
+            <button class="dgs-send-btn" id="dgs-send-btn" aria-label="Send message">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Button -->
+    <button class="dgs-chatbot-toggle" id="dgs-chatbot-toggle" aria-label="Open chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <script src="chatbot-script.js"></script>
+</body>
+</html>
