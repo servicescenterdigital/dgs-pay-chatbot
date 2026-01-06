@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGS-Pay API Chatbot - Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .demo-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #1a73e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: #1a73e8;
+        }
+
+        .info-box ul {
+            margin-bottom: 0;
+        }
+
+        .info-box li {
+            margin: 8px 0;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h4 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #1a73e8;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #1557b0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section h2 {
+            color: #333;
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #f0f4ff;
+            color: #1a73e8;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🤖 DGS-Pay API Chatbot</h1>
+        <p class="subtitle">A lightweight, embeddable assistant for payment API documentation</p>
+
+        <div class="info-box">
+            <h3>✨ Try the Chatbot</h3>
+            <p>Click the chat button in the bottom-right corner to interact with the assistant. Ask questions like:</p>
+            <ul>
+                <li>"How do I authenticate to the API?"</li>
+                <li>"What's the mobile money API endpoint?"</li>
+                <li>"How do I handle webhooks?"</li>
+                <li>"What are the error codes?"</li>
+            </ul>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h4>100% Free</h4>
+                <p>No API costs, no subscriptions, completely free to use</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h4>Lightweight</h4>
+                <p>Under 100KB total size, minimal impact on page load</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h4>Private</h4>
+                <p>No external API calls, all data stays on your server</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h4>Customizable</h4>
+                <p>Easy to brand and customize to match your site</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📦 Quick Start</h2>
+            <div class="code-block">
+                <code>&lt;!-- Add to your website --&gt;
+&lt;link rel="stylesheet" href="chatbot-styles.css"&gt;
+&lt;script src="chatbot-script.js"&gt;&lt;/script&gt;
+
+&lt;!-- Chatbot will appear automatically --&gt;</code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📚 Knowledge Base Topics</h2>
+            <table>
+                <tr>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Authentication</td>
+                    <td>Token request, Bearer auth, expiration handling</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Mobile Money</td>
+                    <td>MTN, Airtel integration, payment initiation</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Card Payments</td>
+                    <td>Local and international card collections</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Payouts</td>
+                    <td>Bank and mobile money payouts</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Error Codes</td>
+                    <td>Validation errors, troubleshooting</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Webhooks</td>
+                    <td>Callback handling, verification</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Field Validation</td>
+                    <td>Reference, name field requirements</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Testing</td>
+                    <td>Sandbox environment, simulation mode</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Best practices, API security</td>
+                    <td><span class="badge">Included</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🛠️ Technical Details</h2>
+            <ul>
+                <li><strong>No external API dependencies</strong> - 100% client-side operation</li>
+                <li><strong>Rule-based keyword matching</strong> - Fast and reliable responses</li>
+                <li><strong>Fallback responses</strong> - Gracefully handles out-of-scope questions</li>
+                <li><strong>Responsive design</strong> - Works on all devices</li>
+                <li><strong>Easy integration</strong> - Just add 3 lines of code</li>
+                <li><strong>Fallback for out-of-scope</strong> - Redirects back to payment topics</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📖 Documentation</h2>
+            <p>For complete documentation, customization options, and how to extend the knowledge base, see the <strong>README.md</strong> file.</p>
+            <p style="margin-top: 10px;"><strong>Key Features:</strong></p>
+            <ul>
+                <li>Quick action buttons for common questions</li>
+                <li>Typing indicators for natural conversation flow</li>
+                <li>Markdown-style code formatting</li>
+                <li>Professional UI with smooth animations</li>
+                <li>Mobile-friendly responsive design</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="#" onclick="alert('See README.md for complete documentation!')" class="cta-button">
+                📖 Read Full Documentation
+            </a>
+        </div>
+
+        <p style="text-align: center; color: #999; margin-top: 40px;">
+            Total size: &lt; 100KB • No external APIs • Completely free
+        </p>
+    </div>
+
+    <!-- Embed the chatbot -->
+    <link rel="stylesheet" href="chatbot-styles.css">
+    <script src="chatbot-script.js"></script>
+</body>
+</html>
